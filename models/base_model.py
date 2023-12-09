@@ -50,13 +50,13 @@ class BaseModel:
         keyword arguments or generates default values for id, created_at,
         and updated_at.
         """
-        new_time_format = "%Y-%m-%dT%H:%M:%S.%f"
+        time_format = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
                     setattr(self, key, value)
-            self.created_at = datetime.strptime(self.created_at, new_time_format)
-            self.updated_at = datetime.strptime(self.updated_at, new_time_format)
+            self.created_at = datetime.strptime(self.created_at, time_format)
+            self.updated_at = datetime.strptime(self.updated_at, time_format)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
