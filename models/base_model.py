@@ -10,7 +10,7 @@ Classes:
 - BaseModel: The base class for all objects in the AirBnB clone project.
 
 Attributes:
-- instance_id (str): A unique identifier generated for each instance.
+- id (str): A unique identifier generated for each instance.
 - created_at (datetime): The timestamp indicating the instance's creation time.
 - updated_at (datetime): The timestamp indicating
 the instance's last update time.
@@ -47,7 +47,7 @@ class BaseModel:
         """
         Constructor for BaseModel class. Initializes instance
         attributes based on provided
-        keyword arguments or generates default values for instance_id, created_at,
+        keyword arguments or generates default values for id, created_at,
         and updated_at.
         """
         time_format = "%Y-%m-%dT%H:%M:%S.%f"
@@ -58,7 +58,7 @@ class BaseModel:
             self.created_at = datetime.strptime(self.created_at, time_format)
             self.updated_at = datetime.strptime(self.updated_at, time_format)
         else:
-            self.instance_id = str(uuid.uuid4())
+            self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
         models.storage.new(self)
@@ -66,9 +66,9 @@ class BaseModel:
     def __str__(self):
         """
         Returns a string representation of the instance,
-        including its class name, instance_id, and attributes.
+        including its class name, id, and attributes.
         """
-        return f"[{self.__class__.__name__}] ({self.instance_id}) {self.__dict__}"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """
